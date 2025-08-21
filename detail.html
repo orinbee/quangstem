@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm</title>
+    <link rel="stylesheet" href="./asset/css/style.css"> <!-- Sử dụng lại style cũ -->
+    <style>
+        /* Thêm một vài style riêng cho trang chi tiết */
+        .detail-container {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .product-detail-layout {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .product-detail-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        .product-detail-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .product-detail-content {
+            flex: 2;
+        }
+        .product-detail-content h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .product-detail-content .tags {
+            margin-bottom: 20px;
+        }
+        .product-detail-content .full-description {
+            line-height: 1.8;
+            white-space: pre-wrap; /* Giữ lại các xuống dòng trong mô tả */
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        #loading-message, #error-message {
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Cuộc Thi KHKT</a>
+            <ul>
+                <li><a href="index.html#products">Sản Phẩm</a></li>
+                <li><a href="index.html#footer">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Trong file: detail.html -->
+<main class="container detail-container">
+    <a href="index.html" class="back-link">&larr; Quay lại danh sách</a>
+
+    <div id="loading-message">
+        <p>Đang tải dữ liệu sản phẩm...</p>
+    </div>
+
+    <div id="error-message" style="display: none;">
+        <p>Không tìm thấy sản phẩm. Có thể sản phẩm đã bị xóa hoặc liên kết không đúng.</p>
+    </div>
+
+    <!-- === CẬP NHẬT CẤU TRÚC TẠI ĐÂY === -->
+    <div id="product-detail-container" class="product-detail-layout" style="display: none;">
+        
+        <!-- Bọc ảnh trong một container để xử lý zoom -->
+        <div class="img-zoom-container">
+            <div id="product-image" class="product-detail-image">
+                <!-- Ảnh gốc sẽ được JS chèn vào đây -->
+            </div>
+            <!-- Khung hiển thị ảnh đã được zoom -->
+            <div id="zoomed-image-result" class="img-zoom-result"></div>
+        </div>
+
+        <div id="product-content" class="product-detail-content">
+            <h1 id="product-title"></h1>
+            <div id="product-tags" class="tags"></div>
+            <h4>Mô tả chi tiết:</h4>
+            <p id="product-description" class="full-description"></p>
+        </div>
+    </div>
+    <!-- ================================== -->
+</main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+
+                <!-- Cột 1: Giới thiệu -->
+                <div class="footer-section about">
+                    <h3 class="logo-text">Cuộc Thi KHKT</h3>
+                    <p>
+                        Nơi quy tụ những tài năng trẻ, đam mê khoa học và sáng tạo. Cùng nhau kiến tạo tương lai từ những ý tưởng đột phá.
+                    </p>
+                </div>
+
+                <!-- Cột 2: Liên kết nhanh -->
+                <div class="footer-section links">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="#">Trang Chủ</a></li>
+                        <li><a href="#products">Sản Phẩm</a></li>
+                        <!-- <li><a href="#">Thể Lệ</a></li>
+                        <li><a href="#">Tin Tức</a></li> -->
+                    </ul>
+                </div>
+
+                <!-- Cột 3: Liên hệ -->
+                <div class="footer-section contact">
+                    <h4>Liên hệ</h4>
+                    <p><i class="icon">📧</i> Email: hoangquangdhhl.cntt@gmail.com</p>
+                    <p><i class="icon">📞</i> Hotline: 0964 092 935</p>
+                </div>
+
+                <!-- Cột 4: Mạng xã hội -->
+                <div class="footer-section social">
+                    <h4>Theo dõi chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/hquang6606/" target="_blank" title="Facebook">
+                            <!-- Facebook SVG Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                        </a>
+                        <a href="https://zalo.me/0964092935" target="_blank" title="Zalo">
+                             <!-- Zalo SVG Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M24,4A20,20,0,1,0,44,24,20,20,0,0,0,24,4ZM35.31,25.43,32.22,33a.5.5,0,0,1-.63.29l-6.26-3.79a.51.51,0,0,0-.5,0l-3.32,2a.5.5,0,0,1-.6-.2L18,25.4a.5.5,0,0,1,.13-.57l6.5-5.32a.5.5,0,0,0,0-.74L16,11.45a.5.5,0,0,1,.16-.67L19,9a.5.5,0,0,1,.63.29L22.9,13a.5.5,0,0,0,.5,0l3.82-2.3a.5.5,0,0,1,.6.2L30.7,17a.5.5,0,0,1-.13.57L24.1,23a.5.5,0,0,0,0,.74l8.05,6.55A.5.5,0,0,1,35.31,25.43Z" fill="#0068ff"/><path d="M26.26,29.54a.5.5,0,0,1,0,.74L18.21,36.83a.5.5,0,0,1-.73-.44l-.5-3.83a.5.5,0,0,1,.13-.44Z" fill="#0068ff"/><polygon fill="#0068ff" points="30.13 18 23.63 23.32 26.54 21.05 32.78 15.1 30.13 18"/><polygon fill="#0068ff" points="21.74 27.24 18.39 29.54 21.23 31.87 21.74 27.24"/><path d="M21.5,13.25l-2.4,2L22,17.5Z" fill="#0068ff"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Hoàng Trọng Quang. Mọi quyền được bảo lưu.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <!-- Script riêng cho trang chi tiết -->
+    <script src="./asset/js/detail.js"></script>
+</body>
+</html>

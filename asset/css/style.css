@@ -1,0 +1,540 @@
+/* --- General Styling --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+*{
+    text-decoration: none;
+}
+a{
+    color: black;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header --- */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0056b3;
+    text-decoration: none;
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+header a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header a:hover {
+    color: #007bff;
+}
+
+/* --- Banner --- */
+.banner {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1500x400?text=Science+Fair+Banner');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.banner-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+/* --- Main Content --- */
+main {
+    padding: 40px 20px;
+}
+
+main h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #0056b3;
+}
+
+#userProductList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.user-product-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    
+}
+.user-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.user-product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.user-product-card .card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.card-content-bottom{
+    margin: 0 15px;
+}
+.user-product-card h3 { margin: 0 0 10px; }
+.user-product-card p { font-size: 15px; flex-grow: 1; margin-bottom: 15px; }
+.user-product-card .tags span {
+    background-color: #e9ecef;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+}
+
+.register-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: auto; /* Push button to the bottom */
+    transition: background-color 0.3s;
+}
+.register-btn:hover { background-color: #218838; }
+
+/* --- Footer --- */
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* --- Modal Styling --- */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa;
+}
+.close-btn:hover { color: #333; }
+
+#registrationForm { display: flex; flex-direction: column; gap: 15px; }
+#registrationForm label { font-weight: bold; }
+#registrationForm input, #registrationForm select, #registrationForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#registrationForm button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.hidden { display: none; }
+.product-status {
+    display: inline-block; /* Để nó chỉ chiếm chiều rộng vừa đủ */
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 12px; /* Tạo khoảng cách với tiêu đề bên dưới */
+}
+
+/* Định dạng màu cho từng trạng thái */
+.product-status.public {
+    background-color: #28a745; /* Màu xanh lá cây */
+}
+
+.product-status.hidden {
+    background-color: #dc3545; /* Màu đỏ (dự phòng nếu sau này bạn muốn hiển thị cả sản phẩm ẩn) */
+}
+.image-container {
+    position: relative; /* Rất quan trọng! */
+}
+
+/* 2. Style cho ảnh bên trong (không thay đổi nhiều) */
+.user-product-card .image-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block; /* Loại bỏ khoảng trống thừa bên dưới ảnh */
+}
+
+/* 3. Style mới cho nhãn dán trạng thái */
+.product-status {
+    position: absolute;   /* Định vị tuyệt đối so với .image-container */
+    top: 10px;            /* Cách lề trên 10px */
+    right: 10px;          /* Cách lề phải 10px */
+    z-index: 2;           /* Đảm bảo nó nằm trên ảnh */
+
+    padding: 5px 12px;
+    border-radius: 5px;   /* Đổi thành góc vuông cho đẹp hơn */
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Thêm đổ bóng cho nổi bật */
+}
+
+/* 4. Giữ nguyên màu nền */
+.product-status.public {
+    background-color: #28a745; /* Màu xanh lá cây */
+}
+
+.product-status.hidden {
+    background-color: #dc3545; /* Màu đỏ */
+}
+/* --- Search Bar Styling --- */
+.search-container {
+    margin-bottom: 40px; /* Tạo khoảng cách với danh sách sản phẩm */
+    text-align: center;
+}
+
+#searchInput {
+    width: 100%;
+    max-width: 600px; /* Giới hạn chiều rộng trên màn hình lớn */
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Quan trọng để padding không làm tăng kích thước */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#searchInput:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none;
+}/* --- Styling for Controls (Filter, Sort, Search) --- */
+.controls-container {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tag-filter-btn {
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tag-filter-btn:hover {
+    background-color: #ced4da;
+}
+
+.tag-filter-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.search-sort-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+    gap: 15px;
+    justify-content: center;
+}
+
+.sort-options {
+    padding: 12px 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+#searchInput {
+    flex-grow: 1; /* Cho phép thanh tìm kiếm co giãn */
+    min-width: 250px; /* Chiều rộng tối thiểu */
+}
+
+
+/* --- Registration Count Styling --- */
+.registration-count {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 3;
+}
+
+/* --- Pagination Styling --- */
+.pagination-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.page-btn {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    color: #007bff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.page-btn:hover {
+    background-color: #e9ecef;
+}
+
+.page-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.page-btn:disabled {
+    color: #6c757d;
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+}/* --- New Footer Styling --- */
+footer {
+    background-color: #343a40;
+    color: #a9b3bb; /* Màu chữ nhẹ hơn trên nền tối */
+    padding: 50px 0 20px 0;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các cột xuống dòng trên màn hình nhỏ */
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1; /* Các cột sẽ cố gắng chia đều không gian */
+    min-width: 220px; /* Chiều rộng tối thiểu trước khi xuống dòng */
+}
+
+.footer-section h3, .footer-section h4 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.footer-section .logo-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.footer-section p {
+    line-height: 1.7;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul a {
+    text-decoration: none;
+    color: #a9b3bb;
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.footer-section ul a:hover {
+    color: #ffffff;
+}
+
+.footer-section .icon {
+    margin-right: 8px;
+}
+
+.social-links a {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: #4e555b;
+    color: #ffffff; /* SVG sẽ kế thừa màu này */
+    margin-right: 10px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px; /* Dùng để căn giữa icon nếu là font icon, nhưng vẫn giữ cho đẹp */
+    transition: background-color 0.3s;
+    padding: 8px; /* Padding để SVG không bị quá lớn */
+    box-sizing: border-box;
+}
+
+.social-links a:hover {
+    background-color: #007bff; /* Màu hover chung */
+}
+
+/* SVG bên trong link */
+.social-links a svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor; /* Rất quan trọng: Giúp SVG lấy màu từ thẻ a */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #4e555b;
+    font-size: 13px;
+}
+.product-status.closed {
+    background-color: #ef4444; /* Màu đỏ */
+}
+
+/* Style cho nút bị vô hiệu hóa (disabled) */
+.register-btn:disabled {
+    background-color: #9ca3af; /* Màu xám */
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.register-btn:disabled:hover {
+    background-color: #9ca3af; /* Giữ nguyên màu xám khi hover */
+}
+/* Trong file: detail.html, bên trong thẻ <style> */
+
+/* ... các style cũ của bạn ... */
+
+/* Container chính cho ảnh và kết quả zoom */
+.img-zoom-container {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+    display: flex; /* Sắp xếp ảnh và kết quả zoom */
+    gap: 20px;
+}
+
+/* Ống kính (sẽ được tạo bởi JS) */
+.img-zoom-lens {
+    position: absolute;
+    border: 2px solid #007bff;
+    /* Kích thước của ống kính */
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.3); /* Làm ống kính hơi mờ */
+    cursor: crosshair;
+}
+
+/* Khung hiển thị kết quả zoom */
+.img-zoom-result {
+    flex-shrink: 0; /* Ngăn không cho khung bị co lại */
+    width: 100%; /* Chiều rộng bằng ảnh gốc */
+    height: 100%; /* Chiều cao bằng ảnh gốc */
+    border: 1px solid #d4d4d4;
+    /* Ảnh zoom sẽ được đặt làm background */
+    background-repeat: no-repeat;
+    /* Ẩn đi ban đầu */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+}
+
+/* Khi container được hover, hiện kết quả zoom lên */
+.img-zoom-container:hover .img-zoom-result {
+    opacity: 1;
+    visibility: visible;
+}
